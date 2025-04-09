@@ -343,7 +343,8 @@ export class SeatbeltFile {
     )
     fs.mkdirSync(dir, { recursive: true })
     fs.writeFileSync(tempFile, dataString, "utf8")
-    fs.renameSync(tempFile, this.filename)
+    fs.copyFileSync(tempFile, this.filename)
+    fs.unlinkSync(tempFile)
   }
 
   toJSON(): SeatbeltFileJson {
